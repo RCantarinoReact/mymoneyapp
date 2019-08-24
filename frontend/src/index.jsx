@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import { applyMiddleware , createStore } from 'redux'
 import { Provider } from 'react-redux'
 
+//mid para esperar a promise ficar disponivel
 import promise from 'redux-promise'
 
 import App from './main/app'
