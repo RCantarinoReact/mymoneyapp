@@ -9,6 +9,9 @@ import Footer from '../commons/template/footer'
 //rota
 import Routes from './routes'
 
+//toastr
+import Mensagem  from '../commons/msgs/mensagem'
+
 
 export default props => (
     <div className='wrapper'>
@@ -18,5 +21,6 @@ export default props => (
             <Routes />
         </div>
         <Footer />
+        <Mensagem />
     </div>
 )
