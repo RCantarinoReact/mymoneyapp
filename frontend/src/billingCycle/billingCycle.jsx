@@ -9,17 +9,20 @@ import TabsContent from '../commons/tab/tabsContent'
 import TabHeader from '../commons/tab/tabHeader'
 import TabContent from '../commons/tab/tabContent'
 
+//lista
+import BillingCycleList from './billingCycleList'
+
 
 //redux
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { selectTab , showTabs } from '../commons/tab/action/tabs.action'
+import { selectTab, showTabs } from '../commons/tab/action/tabs.action'
 
 
 class BillingCycle extends Component {
     componentWillMount() {
         this.props.selectTab('tabListar')
-        this.props.showTabs('tabListar','tabAdd')
+        this.props.showTabs('tabListar', 'tabAdd')
     }
     render() {
         return (
@@ -38,7 +41,9 @@ class BillingCycle extends Component {
                                 icon='trash-o' target='tabDel' />
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id='tabListar'><h1>Lista</h1></TabContent>
+                            <TabContent id='tabListar'>
+                                <BillingCycleList />
+                            </TabContent>
                             <TabContent id='tabAdd'><h1>Add</h1></TabContent>
                             <TabContent id='tabEdit'><h1>Edit</h1></TabContent>
                             <TabContent id='tabDel'><h1>Delete</h1></TabContent>
@@ -50,5 +55,5 @@ class BillingCycle extends Component {
     }
 }
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ selectTab , showTabs }, dispatch);
+    bindActionCreators({ selectTab, showTabs }, dispatch);
 export default connect(null, mapDispatchToProps)(BillingCycle)
