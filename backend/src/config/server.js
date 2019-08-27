@@ -9,7 +9,7 @@ const queryParseInt = require('express-query-int')
 server.use(bodyParser.urlencoded({ extended : true}))
 server.use(bodyParser.json())
 server.use(allowCors)
-server.use(queryParseInt)
+server.use(queryParseInt())
 
 
 

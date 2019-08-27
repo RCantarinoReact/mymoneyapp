@@ -6,6 +6,8 @@ import { selectTab, showTabs } from '../../commons/tab/action/tabs.action'
 const BaseUrl = 'http://localhost:3003/api'
 const billingCycles = '/billingCycles'
 const nomeForm = 'BillingCycleForm'
+
+
 export function getList() {
     const request = axios.get(`${BaseUrl}${billingCycles}`)
     return {
@@ -17,7 +19,7 @@ export function getList() {
 //redux multi, thunk e sagas... permitie multiplas chamadas
 export function create(values) {
     return dispatch => {
-        axios.post(`${BaseUrl}${billingCycles}`, values)
+        axios.post(`${BaseUrl}${billingCycles}/`, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operacao realizada com sucesso')
                 dispatch([
@@ -28,7 +30,8 @@ export function create(values) {
                 ])
             })
             .catch(e => {
-                e.response.data.erros.foreach(erro => toastr.error('Erro', erro))
+                console.log(e.response.data)
+                e.response.data.errors.forEach(error => toastr.error('Erro', error))
             })
     }
 }
