@@ -31,8 +31,17 @@ export function create(values) {
     return submit(values, 'post')
 }
 
-export function Delete(values) {
+export function remove(values) {
     return submit(values, 'delete')
+}
+
+//colocar um modal passando o id
+export function showDelete(billingCycle) {
+    return [
+        showTabs('tabDel'),
+        selectTab('tabDel'),
+        initialize(nomeForm, billingCycle)
+    ]
 }
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 //redux
-import { applyMiddleware , createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 //mid para esperar a promise ficar disponivel
@@ -17,12 +17,12 @@ import reducers from './main/reducers'
 
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
-                 && window.__REDUX_DEVTOOLS_EXTENSION__()
+    && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 
 
 const elemento = document.getElementById('app')
-const store = applyMiddleware(multi , thunk , promise)(createStore)(reducers, devTools)
+const store = applyMiddleware(multi, thunk, promise)(createStore)(reducers, devTools)
 ReactDOM.render(
     <div>
         <Provider store={store}>

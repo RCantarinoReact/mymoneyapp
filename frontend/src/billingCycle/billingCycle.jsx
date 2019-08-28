@@ -17,7 +17,7 @@ import BillingCycleList from './billingCycleList'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectTab, showTabs } from '../commons/tab/action/tabs.action'
-import { create , update , Delete } from '../billingCycle/action/billingCycle.action'
+import { create, update, remove } from '../billingCycle/action/billingCycle.action'
 
 //forms
 import BillingCycleForm from './forms/billingCycle.form'
@@ -48,12 +48,25 @@ class BillingCycle extends Component {
                                 <BillingCycleList />
                             </TabContent>
                             <TabContent id='tabAdd'>
-                                <BillingCycleForm onSubmit={this.props.create} />
+                                <BillingCycleForm
+                                    onSubmit={this.props.create}
+                                    submitLabel='Incluir'
+                                    submitClass='primary' />
                             </TabContent>
                             <TabContent id='tabEdit'>
-                                <BillingCycleForm onSubmit={this.props.update} />
+                                <BillingCycleForm 
+                                onSubmit={this.props.update}
+                                submitLabel='Editar'
+                                submitClass='warning' />
                             </TabContent>
-                            <TabContent id='tabDel'><h1>Delete</h1></TabContent>
+                            <TabContent id='tabDel'>
+                                <BillingCycleForm 
+                                onSubmit={this.props.remove} 
+                                readOnly={true} 
+                                submitLabel='Excluir'
+                                submitClass='warning'/>
+
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
@@ -62,5 +75,5 @@ class BillingCycle extends Component {
     }
 }
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ selectTab, showTabs, create , update , Delete}, dispatch);
+    bindActionCreators({ selectTab, showTabs, create, update, remove }, dispatch);
 export default connect(null, mapDispatchToProps)(BillingCycle)

@@ -11,7 +11,7 @@ import { Init } from '../action/billingCycle.action'
 
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit } = this.props
+        const { handleSubmit, readOnly } = this.props
         return (
             <div>
                 <form role='form' onSubmit={handleSubmit}>
@@ -20,21 +20,27 @@ class BillingCycleForm extends Component {
                             component={LabelAndInput}
                             label='Nome'
                             cols='12 4'
+                            readOnly={readOnly}
                             placeholder='Informe o nome' />
                         <Field
                             component={LabelAndInput}
                             name='month' cols='12 4'
                             maxLength={2}
+                            readOnly={readOnly}
                             label='Mes' type='number' />
                         <Field name='year'
                             component={LabelAndInput}
-                            cols='12 4' maxLength={4}
-                            label='Ano' type='number' />
+                            cols='12 4'
+                            maxLength={4}
+                            label='Ano'
+                            readOnly={readOnly}
+                            type='number' />
                     </div>
                     <div className='box-footer'>
-                        <button type='submit' className='btn btn-primary'>Gravar</button>
-                        <button type="button" className='btn btn-danger'
-                            onClick={this.props.Init}>Cancelar</button>
+                        <button type='submit' className={`btn btn-${this.props.submitClass}`}>
+                            {this.props.submitLabel}
+                        </button>
+                        <button type="button" className='btn btn-danger' onClick={this.props.Init}>Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -44,5 +50,5 @@ class BillingCycleForm extends Component {
 
 BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
 
-const mapDispatchToProps = dispatch =>  bindActionCreators({ Init }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ Init }, dispatch);
 export default connect(null, mapDispatchToProps)(BillingCycleForm) 
