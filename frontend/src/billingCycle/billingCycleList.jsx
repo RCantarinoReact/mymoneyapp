@@ -28,6 +28,11 @@ class BillingCycleList extends Component {
                         onClick={() => this.props.showUpdate(bc)}>
                         <i className='fa fa-pencil'></i>
                     </button>
+
+                    <button className='btn btn-danger'
+                        onClick={() => this.props.showUpdate(bc)}>
+                        <i className='fa trash-o'></i>
+                    </button>
                 </td>
 
             </tr>

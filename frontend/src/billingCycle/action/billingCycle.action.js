@@ -6,7 +6,7 @@ import { selectTab, showTabs } from '../../commons/tab/action/tabs.action'
 const BaseUrl = 'http://localhost:3003/api'
 const billingCycles = '/billingCycles'
 const nomeForm = 'billingCycleForm'
-const INITIAL_VALUES = { }
+const INITIAL_VALUES = {}
 
 
 export function Init() {
@@ -28,8 +28,23 @@ export function getList() {
 
 //redux multi, thunk e sagas... permitie multiplas chamadas
 export function create(values) {
+    return submit(values, 'post')
+}
+
+export function Delete(values) {
+    return submit(values, 'delete')
+}
+
+
+export function update(values) {
+    return submit(values, 'put')
+}
+
+function submit(values, method) {
+
+    const id = values._id ? values._id : ''
     return dispatch => {
-        axios.post(`${BaseUrl}${billingCycles}/`, values)
+        axios[method](`${BaseUrl}${billingCycles}/${id}`, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operacao realizada com sucesso')
                 dispatch(Init())
@@ -39,6 +54,7 @@ export function create(values) {
             })
     }
 }
+
 
 export function showUpdate(billingCycle) {
     return [
