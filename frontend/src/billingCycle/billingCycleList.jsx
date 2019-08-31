@@ -54,9 +54,11 @@ class BillingCycleList extends Component {
                     <tbody>
                         {this.renderRows()}
                     </tbody>
+
                 </table>
 
             </div>
+
         );
     }
 }

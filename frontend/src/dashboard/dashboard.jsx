@@ -17,7 +17,6 @@ class Dashboard extends Component {
 
         const { credit, debt } = this.props.summary
         const result = credit - debt
-
         return (
             <div>
                 <ContentHeader title='Dashboard' small='1.0' />
