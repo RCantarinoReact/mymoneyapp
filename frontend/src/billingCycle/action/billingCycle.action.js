@@ -6,7 +6,7 @@ import { selectTab, showTabs } from '../../commons/tab/action/tabs.action'
 const BaseUrl = 'http://localhost:3003/api'
 const billingCycles = '/billingCycles'
 const nomeForm = 'billingCycleForm'
-const INITIAL_VALUES = { credits: [{}] }
+const INITIAL_VALUES = { credits: [{}] , debits: [{}] }
 
 
 export function Init() {
