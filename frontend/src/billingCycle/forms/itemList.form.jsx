@@ -1,76 +1,55 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Field, arrayInsert, arrayRemove } from 'redux-form'
 import Grid from '../../commons/layout/grid'
 import Input from '../../commons/form/input'
 import If from '../../commons/widget/if'
-//redux
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 class ItemListForm extends Component {
 
     add(index, item = {}) {
-        if (!this.props.readOnly) {
+        if(!this.props.readOnly) {
             this.props.arrayInsert('billingCycleForm', this.props.field, index, item)
         }
     }
 
     remove(index) {
-        if (!this.props.readOnly && this.props.list.length > 1) {
+        if(!this.props.readOnly && this.props.list.length > 1) {
             this.props.arrayRemove('billingCycleForm', this.props.field, index)
         }
     }
 
-
     renderRows() {
-
         const list = this.props.list || []
         return list.map((item, index) => (
             <tr key={index}>
-                <td>
-                    <Field name={`${this.props.field}[${index}].name`}
-                        component={Input}
-                        placeholder='informe o nome'
-                        readOnly={this.props.readOnly} />
-                </td>
-                <td>
-                    <Field name={`{this.props.field}[${index}].value`}
-                        component={Input}
-                        placeholder='informe o nome'
-                        readOnly={this.props.readOnly} />
-                </td>
-
+                <td><Field name={`${this.props.field}[${index}].name`} component={Input}
+                    placeholder='Informe o nome' readOnly={this.props.readOnly} /></td>
+                <td><Field name={`${this.props.field}[${index}].value`} component={Input}
+                    placeholder='Informe o valor' readOnly={this.props.readOnly} /></td>
                 <If test={this.props.showStatus}>
-                    <td>
-                        <Field name={`{this.props.field}[${index}].status`}
-                            component={Input}
-                            placeholder='informe o status'
-                            readOnly={this.props.readOnly} />
-                    </td>
+                    <td><Field name={`${this.props.field}[${index}].status`} component={Input}
+                        placeholder='Informe o status' readOnly={this.props.readOnly} /></td>
                 </If>
-
                 <td>
-                    <button type='button'
-                        onClick={() => this.add(index + 1)}
-                        className='btn btn-success'>
-                        <i className='fa fa-plus'></i>
+                    <button type='button' className='btn btn-success'
+                        onClick={() => this.add(index + 1)}>
+                        <i className="fa fa-plus"></i>
                     </button>
-
-                    <button type='button'
-                        onClick={() => this.add(index + 1, item)}
-                        className='btn btn-warning'>
-                        <i className='fa fa-clone'></i>
+                    <button type='button' className='btn btn-warning'
+                        onClick={() => this.add(index + 1, item)}>
+                        <i className="fa fa-clone"></i>
                     </button>
-
-                    <button type='button'
-                        onClick={() => this.remove(index)}
-                        className='btn btn-danger'>
-                        <i className='fa fa-trash-o'></i>
+                    <button type='button' className='btn btn-danger'
+                        onClick={() => this.remove(index)}>
+                        <i className="fa fa-trash-o"></i>
                     </button>
                 </td>
             </tr>
         ))
     }
+
     render() {
         return (
             <Grid cols={this.props.cols}>
@@ -84,7 +63,7 @@ class ItemListForm extends Component {
                                 <If test={this.props.showStatus}>
                                     <th>Status</th>
                                 </If>
-                                <th>Acoes</th>
+                                <th className='table-actions'>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
