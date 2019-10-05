@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const mongoUrl =  'mongodb'
+const mongoUrl =  'mongodb+srv://renatocantarino:dba123@cantarinocluster-yejbg.mongodb.net/moneyDB?retryWrites=true&w=majority&readPreference=secondary&ssl=true'
 mongoose.Promise = global.Promise
 
-module.exports = mongoose.connect(mongoUrl, {useNewUrlParser: true})
+module.exports = mongoose.connect(mongoUrl, {useNewUrlParser: true} )
 
 mongoose.Error.messages.general.required = "O atributo '{PATH}' e requerido"
 mongoose.Error.messages.Number.min = "O '{VALUE}' informado e menor que o limite minimo '{MIN}'"
